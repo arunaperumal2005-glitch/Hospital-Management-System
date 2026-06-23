@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Doctor</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#f4f7fc;
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .container{
+            background:white;
+            width:450px;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        h2{
+            text-align:center;
+            color:#0077b6;
+            margin-bottom:20px;
+        }
+
+        form p{
+            margin-bottom:15px;
+        }
+
+        label{
+            display:block;
+            margin-bottom:5px;
+            font-weight:bold;
+        }
+
+        input,
+        select,
+        textarea{
+            width:100%;
+            padding:10px;
+            border:1px solid #ccc;
+            border-radius:5px;
+        }
+
+        .buttons{
+            display:flex;
+            gap:10px;
+            margin-top:20px;
+        }
+
+        button,
+        .back-btn{
+            flex:1;
+            padding:12px;
+            border:none;
+            border-radius:5px;
+            text-decoration:none;
+            text-align:center;
+            font-size:16px;
+        }
+
+        button{
+            background:#0077b6;
+            color:white;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#023e8a;
+        }
+
+        .back-btn{
+            background:#6c757d;
+            color:white;
+        }
+
+        .back-btn:hover{
+            background:#545b62;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Add Doctor</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div class="buttons">
+            <button type="submit">Save</button>
+            <a href="{% url 'home' %}" class="back-btn">Back</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

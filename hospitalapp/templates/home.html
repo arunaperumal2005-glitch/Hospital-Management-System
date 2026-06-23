@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hospital Appointment System</title>
+        <style>
+            
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background:#f4f7fc;
+    padding:40px;
+    text-align:center;
+}
+
+h1{
+    color:#0077b6;
+    margin-bottom:30px;
+}
+
+h2{
+    color:#023e8a;
+    margin:25px 0 15px;
+}
+
+a{
+    display:inline-block;
+    text-decoration:none;
+    background:#0077b6;
+    color:white;
+    padding:10px 20px;
+    border-radius:6px;
+    margin:5px;
+    transition:0.3s;
+}
+
+a:hover{
+    background:#023e8a;
+    transform:scale(1.05);
+}
+
+hr{
+    margin:30px auto;
+    width:70%;
+    border:1px solid #ddd;
+}
+
+p{
+    font-size:18px;
+    margin:10px 0;
+}
+
+.dashboard{
+    background:white;
+    width:400px;
+    margin:20px auto;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.logout{
+    background:#dc3545;
+}
+
+.logout:hover{
+    background:#b02a37;
+}
+
+        </style>
+    </head>
+    <body>
+        <h1>Hospital Appointment System</h1>
+        <h2>Quick Actions</h2>
+        <a href="{% url 'add_patient' %}">Add Patient</a>
+        <a href="{% url 'add_doctor' %}">Add Doctor</a>
+        <a href="{% url 'add_appointment' %}">Book Appointment</a>
+        <hr>
+        
+        <h2>View Records</h2>
+        <a href="{% url 'patient_list' %}">View Patients</a>
+        <a href="{% url 'doctor_list' %}">View Doctors</a>
+        <a href="{% url 'appointment_list' %}">View Appointments</a>
+
+
+        <div class="dashboard">
+            <h2>Dashboard</h2>
+            <p>Total Patients: {{ patient_count }}</p>
+            <p>Total Doctors: {{ doctor_count }}</p>
+            <p>Total Appointments: {{ appointment_count }}</p>
+        </div>
+        <a href="{% url 'logout' %}" class="logout">Logout</a>
+        </body>
+</html>

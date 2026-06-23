@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Appointments</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f6f9;
+        }
+
+        /* Header */
+        h1 {
+            background: #0077b6;
+            color: white;
+            padding: 15px;
+            margin: 0;
+            text-align: center;
+        }
+
+        /* Home Button */
+        .home-link {
+            display: inline-block;
+            margin: 15px;
+            padding: 8px 15px;
+            background: #023e8a;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .home-link:hover {
+            background: #03045e;
+        }
+
+        /* Search Form */
+        form {
+            text-align: center;
+            margin: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 15px;
+            background: #0077b6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #023e8a;
+        }
+
+        /* Table */
+        table {
+            width: 90%;
+            margin: auto;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: #0096c7;
+            color: white;
+            padding: 12px;
+        }
+
+        td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background: #f1f1f1;
+        }
+
+       .status {
+            display: inline-block;
+            width: 100px;
+            text-align: center;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: white;
+            font-size: 13px;
+        }
+        .pending {
+            background: #f4a261;
+        }
+
+        .started {
+            background: #f4a261;
+        }
+
+        .completed {
+            background: #2a9d8f;
+        }
+
+        .cancelled {
+            background: #e63946;
+        }
+  
+
+
+        /* Buttons */
+        .edit-btn {
+            padding: 6px 10px;
+            background: #28a745;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .delete-btn {
+            padding: 6px 10px;
+            background: #dc3545;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .edit-btn:hover {
+            background: #1e7e34;
+        }
+
+        .delete-btn:hover {
+            background: #a71d2a;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            input[type="text"] {
+                width: 80%;
+            }
+
+            table {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Appointment List</h1>
+
+    <a href="{% url 'home' %}" class="home-link">Home</a>
+
+    <form method="GET">
+        <input type="text" name="search" placeholder="Search Patient or Doctor">
+        <button type="submit">Search</button>
+    </form>
+
+    <table>
+        <tr>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Appointment Date</th>
+            <th>Status</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+
+        {% for appointment in appointments %}
+        <tr>
+            <td>{{ appointment.patient }}</td>
+            <td>{{ appointment.doctor }}</td>
+            <td>{{ appointment.appointment_date }}</td>
+            <td>
+                <span class="status {{ appointment.status|lower }}">
+                    {{ appointment.status }}
+                </span>
+            </td>
+            <td>
+                <a href="{% url 'edit_appointment' appointment.id %}" class="edit-btn">Edit</a>
+            </td>
+            <td>
+                <a href="{% url 'delete_appointment' appointment.id %}" class="delete-btn">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>
